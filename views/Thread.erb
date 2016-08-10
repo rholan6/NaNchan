@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>NaNchan</title>
+      <!-- jquery -->
+      <script src='//code.jquery.com/jquery-1.10.2.min.js'></script>
+      <!-- Bootstrap CSS -->
+      <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7' crossorigin='anonymous'>
+      <link rel = "stylesheet" type="text/css" href="NaNchan.css">
+  </head>
+  <body>
+    <div class = 'col-sm-12'><center><a href = '/'><img src = "NaNchanLogo.png" class = 'logo' /></a></center></div>
+    <div class = 'header col-sm-12'><center><h1>Reply to thread #<span id = 'threadnum'><%= @threadId %></span></h1></center><div>
+      <div class = 'form-group col-sm-12' id = 'createPost'>
+          <div id = 'userName'>
+              <div class = 'col-sm-6 label'><label for = 'nameBox'>Name</label></div>
+              <div class = 'col-sm-6'><input type = 'text' class = 'form-control' id = 'nameBox' placeholder = 'Anonymous'/></div>
+          </div>
+          <div id = 'postContent'>
+            <div class = 'col-sm-6 label'><label for = 'contentBox'>Comment</label></div>
+            <div class = 'col-sm-6'><textarea class = 'form-control' rows = '6' id = 'contentBox'></textarea></div>
+          </div>
+          <div id = 'img'>
+            <div class = 'col-sm-6 label'><label for = 'imgBox'>Image URL</label></div>
+            <div class = 'col-sm-6'><input type = 'text' class = 'form-control' id = 'imgBox'/></div>
+          </div>
+          <div id = 'confirm'>
+            <center>
+              <button type = 'button' id = 'submitPost' class = 'btn btn-default'>
+                Post
+              </button>
+            </center>
+          </div>
+      </div>
+      <div id = 'posts' class = 'col-sm-12'>
+        <% @origin.each do |op| %>
+        <br />
+        <div class = 'op col-sm-11'>
+          <% if op.imgurl != '' %>
+            <a href = '<%= op.imgurl %>' target = '_blank'>
+              <img src = '<%= op.imgurl %>' class = 'op_pic' />
+            </a>
+          <% else %>
+            <!-- If you try to start a thread on an imageboard without posting an image, suzi q will be sad -->
+            <div>Why would you go to an imageboard to not post images?</div>
+            <img src = 'https://avvesione.files.wordpress.com/2013/02/jojos_bizarre_adventure-18-suzi_q-maid-crying-tears-sad.jpg' class = 'op_pic' />
+          <% end %>
+          <div><span class = 'name'><%= op.poster %></span> <span class = 'subject'><%= @subject %></span> [<%= op.postTime %>]</div>
+          <div><%= op.content %></div>
+        </div>
+        <br />
+        <% end %>
+        <% @all_replies.each do |post| %>
+          <br />
+          <div class = 'reply col-sm-7'>
+            <% if post.imgurl != '' %>
+              <a href = '<%= post.imgurl %>'target = '_blank'>
+                <img src = '<%= post.imgurl %>' class = 'reply_pic' />
+              </a>
+            <% end %>
+            <div><span class = 'name'><%= post.poster %></span> [<%= post.postTime %>]</div>
+            <div><%= post.content %></div>
+          </div>
+          <br />
+        <% end %>
+      </div>
+      <div id = 'footer' class = 'col-sm-12'>
+        [<a href = "/<%= @threadId.to_i - 1 %>">Previous</a>] [<a href = "/">Home</a>] [<a href = "/<%= @threadId.to_i + 1 %>">Next</a>]
+      </div>
+      <script type = 'text/javascript'>
+        $(document).ready(function() {
+          $('#submitPost').click(function() {
+            $.post('/newPost', {poster: $('#nameBox').val(), imgurl: $('#imgBox').val(), content: $('#contentBox').val(), thread_id: $('#threadnum').html()});
+            $('#nameBox').val('');
+            $('#imgBox').val('');
+            $('#contentBox').val('');
+          })
+        })
+      </script>
+  </body>
+</html>

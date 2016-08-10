@@ -1,0 +1,88 @@
+body {
+  background-color: rgb(255, 255, 238);
+}
+
+h1 {
+  color: rgb(166, 0, 44);
+}
+
+hr {
+  display:block;
+  border-style:inset;
+}
+
+.logo {
+  width: 200px;
+}
+
+.header {
+  margin-left:auto;
+  margin-right: auto;
+}
+
+.name {
+  color: green;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.subject {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.label {
+  margin:auto;
+  background-color: rgb(240, 224, 214);
+  color: rgb(166, 0, 44);
+  font-size: 1.2em;
+}
+
+.op {
+  color : rgb(166, 0, 44);
+  padding: 7px 7px 7px 7px;
+}
+
+.reply {
+  background-color: rgb(240, 224, 214);
+  color: rgb(166, 0, 44);
+  float: right;
+  padding: 3px 3px 3px 3px;
+  margin: 3px 3px 3px 3px;
+}
+
+.op_pic {
+  float: left;
+  width: 500px;
+  margin-right: 3px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.reply_pic {
+  float: left;
+  width: 200px;
+  margin: 2px 2px 2px 2px;
+}
+
+.thread {
+  margin: 3px 3px 3px 3px;
+  border: 1px 1px 1px 1px;
+  border-style: dotted;
+  border-color: rgb(166, 0, 44);
+  padding: 3px 3px 3px 3px;
+}
+
+.see_more {
+  float:right;
+}
+
+#submitPost {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#commentLabel {
+  padding-top: auto;
+  padding-bottom: auto;
+}
