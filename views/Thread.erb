@@ -70,15 +70,6 @@
       <div id = 'footer' class = 'col-sm-12'>
         [<a href = "/<%= @threadId.to_i - 1 %>">Previous</a>] [<a href = "/">Home</a>] [<a href = "/<%= @threadId.to_i + 1 %>">Next</a>]
       </div>
-      <script type = 'text/javascript'>
-        $(document).ready(function() {
-          $('#submitPost').click(function() {
-            $.post('/newPost', {poster: $('#nameBox').val(), imgurl: $('#imgBox').val(), content: $('#contentBox').val(), thread_id: $('#threadnum').html()});
-            $('#nameBox').val('');
-            $('#imgBox').val('');
-            $('#contentBox').val('');
-          })
-        })
-      </script>
+        <script type = 'text/javascript' src='Thread.js'></script>
   </body>
 </html>

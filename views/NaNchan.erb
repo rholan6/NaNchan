@@ -88,16 +88,6 @@
             </div>
           <% end %>
         </div>
-        <script type = 'text/javascript'>
-          $(document).ready(function() {
-            $('#submitPost').click(function() {
-              $.post('/newBread', {subject: $('#topicBox').val(), poster: $('#nameBox').val(), imgurl: $('#imgBox').val(), content: $('#contentBox').val()});
-              $('#topicBox').val('');
-              $('#nameBox').val('');
-              $('#imgBox').val('');
-              $('#contentBox').val('');
-            })
-          })
-        </script>
+          <script type='text/javascript' src='NaNchan.js'></script>
     </body>
 </html>
